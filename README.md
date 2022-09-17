@@ -1,4 +1,4 @@
-# Platinum_disGo
+# Platinum_disGOrd
 
 ## 설명
 Go discord bot
