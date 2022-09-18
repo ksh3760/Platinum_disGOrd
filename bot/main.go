@@ -30,7 +30,6 @@ func main() {
 		G_TOKEN = os.Getenv("DISCORD_BOT_TOKEN")
 	}
 
-	// 토큰 읽기
 	sToken, sErr = ioutil.ReadFile(G_TOKEN)
 	if sErr != nil {
 		fmt.Println("Can not read token")
@@ -60,26 +59,22 @@ func main() {
 	}
 
 	// Wait here until CTRL-C or other term signal is received.
-	// CTRL-C 또는 기타 용어 신호가 수신될 때까지 여기서 기다립니다.
+	// CTRL-C 또는 기타 용어 신호가 수신될 때까지 여기서 기다린다.
 	fmt.Println("Bot is now running.  Press CTRL-C to exit.")
 	sSystemCall = make(chan os.Signal, 1)
 	signal.Notify(sSystemCall, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-sSystemCall
 
 	// Cleanly close down the Discord session.
-	// 디스코드 세션을 닫는다.
 	sDg.Close()
 }
 
 // This function will be called (due to AddHandler above) every time a new
 // message is created on any channel that the authenticated bot has access to.
-// 인증된 봇이 액세스할 수 있는 채널에서 새 메시지가 생성될 때마다 (위의 AddHandler로 인해) 이 함수가 호출됩니다.
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	// Ignore all messages created by the bot itself
-	// 봇 자체에서 만든 모든 메세지는 무시한다.
 	// This isn't required in this specific example but it's a good practice.
-	// 이 예제에서는 필요하지 않지만 좋은 방법이다.
 	if m.Author.ID == s.State.User.ID {
 		return
 	}

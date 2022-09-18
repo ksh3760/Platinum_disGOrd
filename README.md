@@ -3,8 +3,7 @@
 ## 설명
 Go discord bot
 
-
-## 기능
+<img src="./public/img/kkulbot.png">
 
 
 ## 참고
